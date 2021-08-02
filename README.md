@@ -1,7 +1,7 @@
-# filmfun
+# Film Lookup
 
 ## Project description
-[Project outline week1](https://learn.foundersandcoders.com/course/syllabus/pre-app-7/project/)
+This site should allow you to search for a film via MovieDB, presenting the user with a few clickable thumbnails matching their search, and on clicking one it should display the guardian review of that film. Peter Bradshaw, the Guardian's chief film critic, has a reputation for being deliberately contrarian and often wrong about movies, this site hopefully will prove or disprove this hypothesis.
 
 ## User stories
 ### Stage one, core (E1?)
@@ -14,7 +14,7 @@
 - [ ] Error alers
 
 ### Stage one, chores
-- [ ] 
+- [x] 
 
 ### Stage one, acceptance criteria
 - [ ] Query at least two APIs using fetch
