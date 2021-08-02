@@ -11,11 +11,52 @@
   </head>
   <body>
     <header>
-      <h1>Film Fun</h1>
+      <h1>The Gradient</h1>
+      <span
+        >Celebrating the guardian's extremely hit-or-miss film coverage</span
+      >
     </header>
-    <main>
-      <section>
-        <h2>Secondary heading</h2>
+    <main class="center grid width-l">
+      <h3 class="inputheader">MovieDB lookup</h3>
+
+      <form class="center width-s">
+        <div>
+          <label for="movieName">Movie Title</label>
+          <input type="text" id="movieName" />
+        </div>
+        <div>
+          <label for="movieDirector">Director</label>
+          <input type="text" id="movieDirector" />
+        </div>
+        <button type="submit">Search!</button>
+      </form>
+      <section class="output">
+        <div class="movie">movie thumbnails go here</div>
+        <div class="movie"></div>
+        <div class="movie"></div>
+        <div class="movie"></div>
+        <div class="movie"></div>
+      </section>
+
+      <h3 class="inputheader">Guardian lookup</h3>
+
+      <form class="center width-s">
+        <div>
+          <label for="movieName">Movie Title</label>
+          <input type="text" id="movieName" />
+        </div>
+        <div>
+          <label for="movieDirector">Director</label>
+          <input type="text" id="movieDirector" />
+        </div>
+        <button type="submit">Search!</button>
+      </form>
+      <section class="output">
+        <ul>
+          <li>Example 1</li>
+          <li>Example 2</li>
+          <li>Example 3</li>
+        </ul>
       </section>
     </main>
     <footer>Footer... @Saira and Sasha</footer>
