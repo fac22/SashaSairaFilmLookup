@@ -4,9 +4,78 @@
 body {
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+header {
+  width: 100%;
+  background-color: #052962;
+  font-family: Georgia, serif;
+  margin-top: 0;
+  padding-top: 1em;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-rendering: optimizeLegibility;
+}
+
+h1 {
+  font-size: 4em;
+  margin-bottom: 0;
+}
+
+header span {
+  font-family: Helvetica, sans-serif;
+  color: yellow;
+  font-size: 1em;
+  margin-bottom: 0;
+  font-weight: lighter;
+}
+form {
   display: flex;
   flex-direction: column;
-  max-width: 60rem;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+/* Primitives */
+.center {
+  max-width: 40rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+.width-s {
+  max-width: 20rem;
+}
+
+.width-m {
+  max-width: 40rem;
+}
+
+.width-l {
+  max-width: 60rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  gap: 5px;
+}
+
+.inputheader {
+  grid-column: 1;
+}
+
+.output {
+  grid-column: 1/-1;
+  display: flex;
+  min-height: 150px;
+  flex-wrap: wrap;
+}
+.movie {
+  border: 1px solid black;
+  min-width: 150px;
+  min-height: 150px;
+  /* display: none; */
 }
