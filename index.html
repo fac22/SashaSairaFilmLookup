@@ -19,10 +19,10 @@
     <main class="center grid width-l">
       <h3 class="inputheader">MovieDB lookup</h3>
 
-      <form class="center width-s">
+      <form class="center width-s" id="movieForm">
         <div>
           <label for="movieName">Movie Title</label>
-          <input type="text" id="movieName" />
+          <input type="text" id="movieName" name="movieName" />
         </div>
         <div>
           <label for="movieDirector">Director</label>
@@ -30,7 +30,7 @@
         </div>
         <button type="submit">Search!</button>
       </form>
-      <section class="output">
+      <section class="output" id="movieOutput">
         <div class="movie">movie thumbnails go here</div>
         <div class="movie"></div>
         <div class="movie"></div>
