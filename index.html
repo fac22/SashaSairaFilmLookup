@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Film Fun</title>
     <link href="style.css" rel="stylesheet" />
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="icon" type="image/png" href="media/camera.png" />
   </head>
   <body>
@@ -40,24 +40,15 @@
 
       <h3 class="inputheader">Guardian lookup</h3>
 
-      <form class="center width-s">
+      <form class="center width-s" id="guardianForm" action="">
         <div>
           <label for="movieName">Movie Title</label>
-          <input type="text" id="movieName" />
+          <input type="text" id="movieName" name="guardianTitle" />
         </div>
-        <div>
-          <label for="movieDirector">Director</label>
-          <input type="text" id="movieDirector" />
-        </div>
+
         <button type="submit">Search!</button>
       </form>
-      <section class="output">
-        <ul>
-          <li>Example 1</li>
-          <li>Example 2</li>
-          <li>Example 3</li>
-        </ul>
-      </section>
+      <section class="output" id="guardianOutput"></section>
     </main>
     <footer>Footer... @Saira and Sasha</footer>
   </body>
