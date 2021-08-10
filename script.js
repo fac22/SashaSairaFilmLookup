@@ -1,6 +1,8 @@
 // -- MovieDB API section --
 const movieForm = document.querySelector('#movieForm')
 const movieOutput = document.querySelector('#movieOutput')
+
+// -- First MovieDB Search
 movieForm.addEventListener('submit', (event) => {
   event.preventDefault()
   movieOutput.innerHTML = ''
@@ -26,14 +28,29 @@ movieForm.addEventListener('submit', (event) => {
           poster.alt = `${a.title} movie poster`
         }
         div.append(poster, title)
-        div.addEventListener('click', () => guardianSearch(div.textContent))
+
         div.classList.add('movie')
+        div.id = a.id
+        div.addEventListener('click', () => filmSearch(div.id))
         movieOutput.append(div)
       })
     })
 })
 
-// -- Guardian API section --
+// Second MovieDB Search @Saira
+const filmSearch = (id) => {
+  fetch(
+    `https://api.themoviedb.org/3/movie/${id}?api_key=41d1b7ae08dbbe368bc25603c8e9b829&language=en-US`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+      const filmTitle = data.title
+      console.log(filmTitle)
+    })
+}
+
+// -- Guardian API section -- (Note to self - work on this last, it's the weakest part)
 const guardianForm = document.querySelector('#guardianForm')
 const output = document.querySelector('#guardianOutput')
 guardianForm.addEventListener('submit', (event) => {
