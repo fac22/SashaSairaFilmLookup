@@ -19,25 +19,15 @@
     <main class="center grid width-l">
       <h3 class="inputheader">MovieDB lookup</h3>
 
-      <form class="center width-s">
+      <form class="center width-s" id="movieForm">
         <div>
           <label for="movieName">Movie Title</label>
-          <input type="text" id="movieName" />
-        </div>
-        <div>
-          <label for="movieDirector">Director</label>
-          <input type="text" id="movieDirector" />
+          <input type="text" id="movieName" name="movieName" />
         </div>
         <button type="submit">Search!</button>
       </form>
-      <section class="output">
-        <div class="movie">movie thumbnails go here</div>
-        <div class="movie"></div>
-        <div class="movie"></div>
-        <div class="movie"></div>
-        <div class="movie"></div>
-      </section>
-
+      <section class="output" id="searchOutput"></section>
+      <section class="output" id="movieOutput"></section>
       <h3 class="inputheader">Guardian lookup</h3>
 
       <form class="center width-s" id="guardianForm" action="">
