@@ -1,11 +1,12 @@
 // -- MovieDB API section --
 const movieForm = document.querySelector('#movieForm')
+const searchOutput = document.querySelector('#searchOutput')
 const movieOutput = document.querySelector('#movieOutput')
 
 // -- First MovieDB Search
 movieForm.addEventListener('submit', (event) => {
   event.preventDefault()
-  movieOutput.innerHTML = ''
+  searchOutput.innerHTML = ''
   const movieData = new FormData(movieForm)
   const movieName = movieData.get('movieName')
   fetch(
@@ -32,7 +33,7 @@ movieForm.addEventListener('submit', (event) => {
         div.classList.add('movie')
         div.id = a.id
         div.addEventListener('click', () => filmSearch(div.id))
-        movieOutput.append(div)
+        searchOutput.append(div)
       })
     })
 })
@@ -44,9 +45,11 @@ const filmSearch = (id) => {
   )
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
-      const filmTitle = data.title
-      console.log(filmTitle)
+      movieOutput.innerHTML = ''
+      console.log(data) // This is where all the info should go, below is just an example
+      const filmTitle = document.createElement('h2')
+      filmTitle.innerText = data.title
+      movieOutput.append(filmTitle)
     })
 }
 
