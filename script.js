@@ -10,20 +10,24 @@ movieForm.addEventListener('submit', (event) => {
     `https://api.themoviedb.org/3/search/movie?api_key=41d1b7ae08dbbe368bc25603c8e9b829&language=en-US&query=${movieName}&page=1&include_adult=false`
   )
     .then((response) => response.json())
-    .then((response) => response.results.slice(0, 5))
+    .then((response) => response.results.slice(0, 6))
     .then((results) => {
       console.log(results)
       results.forEach((a) => {
         const div = document.createElement('div')
         const poster = document.createElement('img')
-        const title = document.createElement('a')
+        const title = document.createElement('span')
         title.innerText = a.title
         if (a.poster_path === null) {
           poster.src = 'media/question.png'
+          poster.alt = 'no poster found'
         } else {
           poster.src = `https://image.tmdb.org/t/p/w154/${a.poster_path}`
+          poster.alt = `${a.title} movie poster`
         }
         div.append(poster, title)
+        div.addEventListener('click', () => guardianSearch(div.textContent))
+        div.classList.add('movie')
         movieOutput.append(div)
       })
     })
@@ -34,15 +38,32 @@ const guardianForm = document.querySelector('#guardianForm')
 const output = document.querySelector('#guardianOutput')
 guardianForm.addEventListener('submit', (event) => {
   event.preventDefault()
-  output.innerHTML = ''
   const guardianData = new FormData(guardianForm)
   const filmTitle = guardianData.get('guardianTitle')
+  guardianSearch(filmTitle)
+  /*
+   */
+})
+const guardianSearch = (title) => {
+  output.innerHTML = ''
+  console.log(title.replace(/[^a-z0-9 ,.?!]/gi, ''))
   fetch(
-    `https://content.guardianapis.com/search?section=film&q=${filmTitle}&api-key=499957d7-a42f-4251-8a85-d0635062790f`
+    `https://content.guardianapis.com/search?section=film&q=${title.replace(
+      /[^a-z0-9 ,.?!]/gi,
+      ''
+    )}&tag=film/film,tone/reviews&show-fields=starRating,headline,thumbnail&order-by=oldest&api-key=499957d7-a42f-4251-8a85-d0635062790f`
   )
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        const error = new Error(response.status)
+        throw error
+      } else {
+        return response.json()
+      }
+    })
     .then((response) => response.response.results)
     .then((results) => {
+      console.log(results)
       const articleResults = document.createElement('ul')
       results.forEach((a) => {
         const li = document.createElement('li')
@@ -55,4 +76,4 @@ guardianForm.addEventListener('submit', (event) => {
       })
       output.append(articleResults)
     })
-})
+}

@@ -42,6 +42,9 @@ div {
   flex-direction: column;
   max-width: 150px;
 }
+ul {
+  list-style-type: none;
+}
 
 /* Primitives */
 .center {
