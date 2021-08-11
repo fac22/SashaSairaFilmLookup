@@ -2,20 +2,21 @@
 }
 
 body {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+  font-family: 'Georgia', 'Lucida Sans Regular', 'Lucida Grande',
     'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 header {
   width: 100%;
-  background-color: #052962;
-  font-family: Georgia, serif;
+  background-color: white;
+
   margin-top: 0;
   padding-top: 1em;
-  color: white;
+  color: black;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   text-rendering: optimizeLegibility;
+  border-bottom: solid black 1px;
 }
 
 h1 {
@@ -25,7 +26,7 @@ h1 {
 
 header span {
   font-family: Helvetica, sans-serif;
-  color: yellow;
+  color: black;
   font-size: 1em;
   margin-bottom: 0;
   font-weight: lighter;
@@ -86,7 +87,7 @@ ul {
 }
 .movie {
   border: 1px solid black;
-  min-width: 150px;
-  min-height: 150px;
+  max-width: 150px;
+  max-height: 150px;
   /* display: none; */
 }
