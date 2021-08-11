@@ -76,7 +76,7 @@ ul {
   grid-column: 1;
 }
 
-.output {
+.output-tg {
   grid-column: 1/-1;
   display: flex;
   flex-direction: row;
