@@ -1,61 +1,77 @@
 // -- MovieDB API section --
-const movieForm = document.querySelector('#movieForm')
-const searchOutput = document.querySelector('#searchOutput')
-const movieOutput = document.querySelector('#movieOutput')
+// // -- First MovieDB Search
 
-// -- First MovieDB Search
-movieForm.addEventListener('submit', (event) => {
-  event.preventDefault()
-  searchOutput.innerHTML = ''
-  const movieData = new FormData(movieForm)
-  const movieName = movieData.get('movieName')
+
+const APIKey = "095c02248bac24e95cec5fc2ad4d586d";
+const form = document.querySelector("form");
+const output = document.querySelector("output");
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  output.innerHTML = "";
+  const tmdbformData = new FormData(form);
+  const filmName = tmdbformData.get("film");
+
   fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=41d1b7ae08dbbe368bc25603c8e9b829&language=en-US&query=${movieName}&page=1&include_adult=false`
+    `https://api.themoviedb.org/3/search/movie?api_key=${APIKey}&language=en-US&query=${filmName}&page=1`,
+    { method: "GET" }
   )
-    .then((response) => response.json())
-    .then((response) => response.results.slice(0, 6))
+    .then((response) => {
+      if (!response.ok) throw new Error(response.status);
+      return response.json();
+    })
+    .then((data) => data.results)
     .then((results) => {
-      console.log(results)
-      results.forEach((a) => {
-        const div = document.createElement('div')
-        const poster = document.createElement('img')
-        const title = document.createElement('span')
-        title.innerText = a.title
-        if (a.poster_path === null) {
-          poster.src = 'media/question.png'
-          poster.alt = 'no poster found'
-        } else {
-          poster.src = `https://image.tmdb.org/t/p/w154/${a.poster_path}`
-          poster.alt = `${a.title} movie poster`
-        }
-        div.append(poster, title)
+      const heading = document.createElement("h2");
+      heading.textContent = filmName; //
+      output.append(heading);
+      const introtext = document.createElement("p");
+      heading.textContent = "Please choose from the following films:";
+      output.append(introtext);
+      const listmain = document.createElement("ul");
+      results.forEach((film) => {
+        console.log(film);
+        console.log(
+          `oh, wowser! looks it's ${film.poster_path} for ${film.title}`
+        );
+        let listitem = document.createElement("li");
+        listitem.textContent = film.title;
 
-        div.classList.add('movie')
-        div.id = a.id
-        div.addEventListener('click', () => filmSearch(div.id))
-        searchOutput.append(div)
-      })
+        let image = document.createElement("img");
+        imagepath = film.poster_path;
+        image.src = `https://www.themoviedb.org/t/p/w220_and_h330_face/${film.poster_path}`;
+        image.alt = "image probs, could not retrieve image";
+        output.append(listitem, image);
+      });
     })
-})
+    .catch((error) => {
+      console.error(error);
+      if (error.message === "404") {
+        output.textContent = `Could not find "${filmName}"`;
+      } else {
+        output.textContent = "Another kind of error.";
+      }
+    });
+});
 
-// Second MovieDB Search @Saira
-const filmSearch = (id) => {
-  fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=41d1b7ae08dbbe368bc25603c8e9b829&language=en-US`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      movieOutput.innerHTML = ''
-      console.log(data) // This is where all the info should go, below is just an example
-      const filmTitle = document.createElement('h2')
-      filmTitle.innerText = data.title
-      movieOutput.append(filmTitle)
-    })
-}
+// Second MovieDB Search @Saira - I need to work on this more - SB
+// const filmSearch = (id) => {
+//   fetch(
+//     `https://api.themoviedb.org/3/movie/${id}?api_key=41d1b7ae08dbbe368bc25603c8e9b829&language=en-US`
+//   )
+//     .then((response) => response.json())
+//     .then((data) => {
+//       movieOutput.innerHTML = ''
+//       console.log(data) // This is where all the info should go, below is just an example
+//       const filmTitle = document.createElement('h2')
+//       filmTitle.innerText = data.title
+//       movieOutput.append(filmTitle)
+//     })
+// }
 
 // -- Guardian API section -- (Note to self - work on this last, it's the weakest part)
 const guardianForm = document.querySelector('#guardianForm')
-const output = document.querySelector('#guardianOutput')
+const outputg = document.querySelector('#guardianOutput')
 guardianForm.addEventListener('submit', (event) => {
   event.preventDefault()
   const guardianData = new FormData(guardianForm)
@@ -65,7 +81,7 @@ guardianForm.addEventListener('submit', (event) => {
    */
 })
 const guardianSearch = (title) => {
-  output.innerHTML = ''
+  outputg.innerHTML = ''
   console.log(title.replace(/[^a-z0-9 ,.?!]/gi, ''))
   fetch(
     `https://content.guardianapis.com/search?section=film&q=${title.replace(
@@ -94,6 +110,6 @@ const guardianSearch = (title) => {
         li.append(link)
         articleResults.append(li)
       })
-      output.append(articleResults)
+      outputg.append(articleResults)
     })
 }
